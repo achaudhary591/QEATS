@@ -1,0 +1,26 @@
+Initial Observation
+  Restaurants returned null on running server
+Hypothesis
+  List was not returning valid output
+Prediction
+  Checking methods returning lists, and empty List if not restaurants
+Experiment
+  Changed findAllRestaurantsCloseFromDb method to check for no restaurants
+Observe
+  [ACCEPTED] Method now returns empty list if no restaurants and not null.
+
+
+Initial Observation
+  Test RestaurantAutoWiring throws error
+Hypothesis
+  Error shows not registered parameter this is an @Autowiring issue
+Prediction
+  Providing a default ObjectMapper that can be Autowired through DI might solve the issue
+Experiment
+  Found the config/ObjectMapperBeanConfig, thus making it default ObjectMapper configuration.
+  Added @Configuration to class and @Bean on method to provide ObjectMapper. Then added @ExtendWith
+  SpringExtension to enable test Junit extension in Spring. Then added @ContextConfiguration to add
+  ObjectConfiguration
+  parameters.
+Observe
+[FIXED] All tests running after fixing @Autowire parameter

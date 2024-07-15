@@ -1,4 +1,3 @@
-
 /*
  *
  *  * Copyright (c) Crio.Do 2019. All rights reserved
@@ -13,6 +12,7 @@ import org.json.JSONException;
 import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 
+// COMPLETED: CRIO_TASK_MODULE_SERIALIZATION - Pass tests in RestaurantTest.
 class RestaurantTest {
 
   @Test
@@ -33,9 +33,12 @@ class RestaurantTest {
             + "  ]\n"
             + "}";
 
+    // Setting up a restaurant object for testing. The following ensures that restaurant
+    // object can deserialize the right restaurant json.
     Restaurant restaurant = new Restaurant();
     restaurant = new ObjectMapper().readValue(jsonString, Restaurant.class);
 
+    // Deserialize the Json string from Restaurant class to ensure its done cleanly.
     String actualJsonString = "";
     actualJsonString = new ObjectMapper().writeValueAsString(restaurant);
     JSONAssert.assertEquals(jsonString, actualJsonString, true);

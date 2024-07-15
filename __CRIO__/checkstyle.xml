@@ -238,12 +238,7 @@
       <property name="exceptionVariableName" value="expected"/>
     </module>
     <module name="CommentsIndentation"/>
-    <module name="SuppressWarnings">
-      <property name="id" value="checkstyle:suppresswarnings"/>
-    </module>
   </module>
-
-
 
   <property name="fileExtensions" value="java, properties, xml"/>
   <!-- Checks for whitespace                               -->

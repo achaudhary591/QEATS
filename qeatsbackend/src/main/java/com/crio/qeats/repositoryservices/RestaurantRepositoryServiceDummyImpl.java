@@ -1,20 +1,19 @@
-
 package com.crio.qeats.repositoryservices;
 
 import com.crio.qeats.dto.Restaurant;
 import com.crio.qeats.utils.FixtureHelpers;
+import com.crio.qeats.utils.GeoUtils;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Future;
 import java.util.concurrent.ThreadLocalRandom;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-public class RestaurantRepositoryServiceDummyImpl implements RestaurantRepositoryService {
+@Service
+public class RestaurantRepositoryServiceDummyImpl  {
   private static final String FIXTURES = "fixtures/exchanges";
   private ObjectMapper objectMapper = new ObjectMapper();
 
@@ -26,7 +25,12 @@ public class RestaurantRepositoryServiceDummyImpl implements RestaurantRepositor
     });
   }
 
-  @Override
+  // COMPLETED: CRIO_TASK_MODULE_RESTAURANTSAPI - Use this dummy implementation.
+  // This function returns a list of restaurants in any lat/long of your choice randomly.
+  // It will load some dummy restaurants and change their latitude/longitude near
+  // the lat/long you pass. In the next module, once you start using mongodb, you will not use
+  // it anymore.
+
   public List<Restaurant> findAllRestaurantsCloseBy(Double latitude, Double longitude,
       LocalTime currentTime, Double servingRadiusInKms) {
     List<Restaurant> restaurantList = new ArrayList<>();
@@ -41,30 +45,4 @@ public class RestaurantRepositoryServiceDummyImpl implements RestaurantRepositor
     }
     return restaurantList;
   }
-
-
-
-  public List<Restaurant> findRestaurantsByName(Double latitude, Double longitude,
-      String searchString, LocalTime currentTime, Double servingRadiusInKms) {
-    return null;
-  }
-
-  public List<Restaurant> findRestaurantsByAttributes(
-      Double latitude, Double longitude, String searchString,
-      LocalTime currentTime, Double servingRadiusInKms) {
-    return null;
-  }
-
-  public List<Restaurant> findRestaurantsByItemName(Double latitude, Double longitude,
-      String searchString, LocalTime currentTime, Double servingRadiusInKms) {
-    return null;
-  }
-
-  public List<Restaurant> findRestaurantsByItemAttributes(Double latitude, Double longitude,
-      String searchString, LocalTime currentTime, Double servingRadiusInKms) {
-    return null;
-  }
-
-
 }
-

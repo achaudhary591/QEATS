@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  qeats:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app
+    image: 'abhishekchd/qeats:latest'
+    ports:
+      - "8080:8081"
+    expose:
+      - "8081:8081"
+    depends_on:
+      - db
+    links:
+      - redis
+      - rabbitmq
+    environment:
+      - SERVER_PORT=8081
+      - SPRING_DATA_MONGODB_URI=mongodb://db:27017/restaurant-database?authSource=admin
+      - SPRING_DATA_REDIS_HOST=redis
+      - SPRING_DATA_REDIS_PORT=6379
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_PORT=5672
+      - SPRING_RABBITMQ_USERNAME=guest
+      - SPRING_RABBITMQ_PASSWORD=guest
+  redis:
+    image: 'redis:alpine'
+    container_name: redis
+    restart: always
+    ports:
+      - '6379:6379'
+  db:
+    build:
+      context: .
+      dockerfile: assets/DockerfileMongodb
+    container_name: mongo-db
+    hostname: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=restaurant-database
+      - LOCALIZE_LATITUDE=${LATITUDE?err}
+      - LOCALIZE_LONGITUDE=${LONGITUDE?err}
+    volumes:
+      - ./assets/localize_restaurants.py:/docker-entrypoint-initdb.d/localize_restaurants.py
+      - ./assets/mongo_init.sh:/docker-entrypoint-initdb.d/mongo_init.sh
+      - ./assets/data-dump:/data-dump
+    command: ["--bind_ip", "0.0.0.0"]
+  rabbitmq:
+    image: rabbitmq:3-alpine
+    container_name: 'rabbitmq'
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+      - "25672:25672"

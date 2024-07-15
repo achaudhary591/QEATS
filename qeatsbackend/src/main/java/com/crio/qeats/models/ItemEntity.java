@@ -1,4 +1,3 @@
-
 package com.crio.qeats.models;
 
 import java.util.ArrayList;

@@ -1,4 +1,3 @@
-
 /*
  *
  *  * Copyright (c) Crio.Do 2019. All rights reserved
@@ -18,7 +17,8 @@ import java.nio.charset.StandardCharsets;
  */
 public class FixtureHelpers {
 
-  private FixtureHelpers() { /* singleton */ }
+  private FixtureHelpers() { /* singleton */
+  }
 
   /**
    * Reads the given fixture file from the classpath (e. g. {@code src/test/resources}) and returns

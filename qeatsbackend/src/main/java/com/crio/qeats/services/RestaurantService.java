@@ -1,4 +1,3 @@
-
 /*
  *
  *  * Copyright (c) Crio.Do 2019. All rights reserved
@@ -50,7 +49,6 @@ public interface RestaurantService {
    */
   GetRestaurantsResponse findRestaurantsBySearchQuery(
       GetRestaurantsRequest getRestaurantsRequest, LocalTime currentTime);
-
 
   /**
    * Identical input and output to @link{findRestaurantsBySearchQuery} but

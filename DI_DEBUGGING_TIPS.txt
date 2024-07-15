@@ -1,0 +1,6 @@
+1. Add breakpoints at DI points to check if dependencies exist or not. Also if context of Spring is
+available or not.
+2. Searching the exact error is very helpful. Like No ParameterResolver was found in this case,
+hence we needed to resolve parameter before starting.
+3. Build a logical flow of dependency and see if those are created before we use them.
+4. Read a lot of documentation of annotations being used. Like Configuration, Bean, Autowire etc.
